@@ -3,7 +3,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+html{
+  font-family: 'Roboto', sans-serif;
+}
 body {
   @apply bg-[#F7F9FA] text-[#222222]
+}
+
+
+.haven-container{
+  @apply max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4
+}
+
+.secondary-text{
+  @apply text-gray-600
+}
+
+.haven-btn{
+  @apply px-4 py-2 bg-[#FF6633] text-white font-semibold rounded hover:bg-[#FF803F] transition-colors duration-300
+}
+
+.primary-text{
+  @apply text-[#FF6633]
 }
