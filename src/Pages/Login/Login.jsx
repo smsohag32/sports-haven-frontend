@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import EyeIconButton from "../../components/Button/EyeIconButton";
 import loginImage from "../../assets/animation/login2.json";
 import { styled } from "styled-components";
 import SocialLogin from "../../components/shered/SocialLogin";
+import { useAuth } from "../../hooks/useAuth";
 
 // login container
 const LoginContainer = styled.div`
@@ -13,19 +14,35 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
+  const { userLogin, loading, setLoading } = useAuth();
+
   const [loginErr, setLoginErr] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   // react hook form
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   // handle to login user
   const handleLogin = (userInfo) => {
     console.log(userInfo);
+    const email = userInfo.email;
+    const password = userInfo.password;
+    userLogin(email, password)
+      .then((result) => {
+        navigate(from, { replace: true });
+        reset();
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
   };
 
   return (

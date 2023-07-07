@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import Lottie from "lottie-react";
+import { Link, useNavigate } from "react-router-dom";
 import EyeIconButton from "../../components/Button/EyeIconButton";
-import registerImage from "../../assets/animation/login2.json";
 import { styled } from "styled-components";
 import SocialLogin from "../../components/shered/SocialLogin";
+import { useAuth } from "../../hooks/useAuth";
+import { imageUpload } from "../../utils/imageUpload";
+import IconSpin from "../../components/Spinner/IconSpin";
 
 // login container
 const RegisterContainer = styled.div`
@@ -13,6 +14,9 @@ const RegisterContainer = styled.div`
 `;
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { userRegister, loading, setLoading, userInfoUpdate, logOut } =
+    useAuth();
   const [registerErr, setRegisterErr] = useState("");
   const [isShow, setIsShow] = useState(false);
 
@@ -21,11 +25,43 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   // handle to login user
   const handleRegister = (userInfo) => {
-    console.log(userInfo);
+    setRegisterErr("");
+    const name = userInfo.name;
+    const email = userInfo.email;
+    const password = userInfo.password;
+    const image = userInfo?.image[0];
+
+    // upload image in imgbb
+    imageUpload(image).then((imageInfo) => {
+      const photo_url = imageInfo?.data?.display_url;
+
+      // user create
+      userRegister(email, password)
+        .then((result) => {
+          // update user info
+          userInfoUpdate(name, photo_url)
+            .then(() => {
+              // user log out
+              logOut().then().catch();
+              navigate("/login");
+              reset();
+            })
+            .catch((err) => {
+              setLoading(false);
+            });
+        })
+        .catch((err) => {
+          if (err.message.includes("already")) {
+            setRegisterErr("Your already have a account please Login");
+            setLoading(false);
+          }
+        });
+    });
   };
 
   return (
@@ -109,6 +145,10 @@ const Register = () => {
                 <input
                   {...register("password", {
                     required: "This Field is required *",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
                   })}
                   type={`${isShow ? "text" : "password"}`}
                   name="password"
@@ -127,8 +167,12 @@ const Register = () => {
                 )}
               </div>
             </div>
-            <button type="submit" className="haven-btn w-full mx-auto">
-              Register
+            <button
+              disabled={loading}
+              type="submit"
+              className="haven-btn w-full mx-auto"
+            >
+              {loading ? <IconSpin /> : "Register"}
             </button>
           </form>
           {registerErr && (
