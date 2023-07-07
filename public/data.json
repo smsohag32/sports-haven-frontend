@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Basketball",
+    "description": "Official NBA basketball for indoor and outdoor play",
+    "price": 29.99,
+    "availability": true,
+    "rating": 4.5,
+    "image": "basketball.jpg"
+  },
+  {
+    "name": "Football",
+    "description": "High-quality football for recreational and competitive play",
+    "price": 19.99,
+    "availability": true,
+    "rating": 4.2,
+    "image": "football.jpg"
+  },
+  {
+    "name": "Tennis Racket",
+    "description": "Professional-grade tennis racket for enhanced performance",
+    "price": 99.99,
+    "availability": true,
+    "rating": 4.8,
+    "image": "tennis-racket.jpg"
+  },
+  {
+    "name": "Running Shoes",
+    "description": "Lightweight and comfortable running shoes for athletes",
+    "price": 79.99,
+    "availability": false,
+    "rating": 4.0,
+    "image": "running-shoes.jpg"
+  }
+]

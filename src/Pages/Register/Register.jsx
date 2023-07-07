@@ -7,6 +7,7 @@ import SocialLogin from "../../components/shered/SocialLogin";
 import { useAuth } from "../../hooks/useAuth";
 import { imageUpload } from "../../utils/imageUpload";
 import IconSpin from "../../components/Spinner/IconSpin";
+import saveUser from "../../utils/saveuser";
 
 // login container
 const RegisterContainer = styled.div`
@@ -43,10 +44,12 @@ const Register = () => {
       // user create
       userRegister(email, password)
         .then((result) => {
+          const user = result.user;
           // update user info
           userInfoUpdate(name, photo_url)
             .then(() => {
               // user log out
+              saveUser(user);
               logOut().then().catch();
               navigate("/login");
               reset();
