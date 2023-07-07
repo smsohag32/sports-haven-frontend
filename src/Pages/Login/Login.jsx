@@ -7,6 +7,7 @@ import loginImage from "../../assets/animation/login2.json";
 import { styled } from "styled-components";
 import SocialLogin from "../../components/shered/SocialLogin";
 import { useAuth } from "../../hooks/useAuth";
+import IconSpin from "../../components/Spinner/IconSpin";
 
 // login container
 const LoginContainer = styled.div`
@@ -42,6 +43,11 @@ const Login = () => {
       })
       .catch((err) => {
         setLoading(false);
+        if (err.message.includes("not-found")) {
+          setLoginErr("Account not found! Please Sing up");
+        } else if (err.message.includes("wrong")) {
+          setLoginErr("password is wrong");
+        }
       });
   };
 
@@ -95,8 +101,12 @@ const Login = () => {
                 </span>
               )}
             </div>
-            <button type="submit" className="haven-btn w-full mx-auto">
-              Login
+            <button
+              disabled={loading}
+              type="submit"
+              className="haven-btn w-full mx-auto"
+            >
+              {loading ? <IconSpin /> : "Login"}
             </button>
           </form>
           {loginErr && (

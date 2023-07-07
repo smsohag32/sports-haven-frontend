@@ -4,11 +4,16 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/login";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/",

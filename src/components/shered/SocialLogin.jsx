@@ -1,7 +1,19 @@
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 const SocialLogin = () => {
+  const { loading, setLoading, googleLogin } = useAuth();
+
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+
   const handleGoogleLogin = () => {
-    console.log("");
+    googleLogin()
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((err) => setLoading(false));
   };
   return (
     <div className=" w-full mt-3 text-center justify-center flex items-center ">
