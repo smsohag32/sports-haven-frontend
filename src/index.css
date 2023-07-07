@@ -14,7 +14,7 @@ body {
 
 
 .haven-container{
-  @apply max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4
+  @apply max-w-[2520px] w-full mx-auto xl:px-20 md:px-10 sm:px-2 px-4
 }
 
 .secondary-text{
@@ -26,5 +26,15 @@ body {
 }
 
 .primary-text{
+  @apply text-[#FF6633]
+}
+
+.primary-link{
+  @apply text-black
+}
+.primary-link:hover{
+  @apply text-[#FF6633] transition-all duration-200
+}
+.active-link{
   @apply text-[#FF6633]
 }
