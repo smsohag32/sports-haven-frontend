@@ -7,6 +7,11 @@ import useSecureAuth from "../../hooks/useSecureAuth";
 const ShoppingCarts = () => {
   const { cartsData, cLoading, refetch } = useCarts();
   const { secureAuth } = useSecureAuth();
+
+  //   calculate price
+  const total = cartsData.reduce((sum, item) => sum + item.price, 0);
+  const subTotal = parseFloat(total.toFixed(2));
+
   // ShoppingCart items remove handle
   const handleRemove = (id) => {
     secureAuth.delete(`/carts/${id}`).then((data) => {
@@ -55,7 +60,9 @@ const ShoppingCarts = () => {
           </div>
           <div className="w-full h-full flex flex-col gap-1 p-6 md:col-span-1 border-2">
             <h1 className="font-semibold text-xl md:text-2xl">Order Summary</h1>
-            <p className="primary-text font-bold text-lg">Subtotal: 300</p>
+            <p className="primary-text font-bold text-lg">
+              Subtotal: {subTotal}
+            </p>
             <p className="text-gray-700 text-sm">
               Taxes and shipping calculated at checkout.
             </p>
