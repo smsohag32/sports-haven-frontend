@@ -3,10 +3,13 @@ import useCarts from "../../hooks/useCarts";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
+import useSecureAuth from "../../hooks/useSecureAuth";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
   const { cartsData } = useCarts();
   const { user, loading } = useAuth();
+  const { secureAuth } = useSecureAuth();
   const navigate = useNavigate();
   const [address, setAddress] = useState("");
   const [addressErr, setAddressErr] = useState("");
@@ -21,15 +24,41 @@ const Checkout = () => {
   const allTotal = subTotal + totalTax + shipping;
   const grandTotal = allTotal.toFixed(2).toString();
 
+  //   date formate
+
+  const currentDate = new Date();
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
+  const formattedDate = currentDate.toLocaleDateString(undefined, options);
+
   // handle order confirm
   const handleOrder = () => {
     setAddressErr("");
     const email = user?.email;
     const name = user?.displayName;
-
     if (!address) {
       return setAddressErr("Please provide your address!");
     }
+    const newOrder = {
+      order: cartsData,
+      total_items: cartsData?.length,
+      customer_name: name,
+      total_cost: grandTotal,
+      email,
+      date: formattedDate,
+    };
+    secureAuth.post(`/orders/${user?.email}`, newOrder).then((data) => {
+      if (data.data.insertedId) {
+        Swal.fire({
+          title: "Successful Done",
+          text: "Your order now processing",
+          imageUrl: "https://i.ibb.co/BsgqCqC/success.png",
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+        });
+      }
+      navigate("/dashboard/order-summary");
+    });
   };
 
   if (loading) {

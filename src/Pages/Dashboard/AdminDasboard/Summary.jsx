@@ -3,7 +3,7 @@ import SectionHeading from "../../../components/shered/SectionHeading";
 const Summary = () => {
   return (
     <div>
-      <SectionHeading heading="Summary"></SectionHeading>
+      <SectionHeading heading="Summary Overview"></SectionHeading>
     </div>
   );
 };

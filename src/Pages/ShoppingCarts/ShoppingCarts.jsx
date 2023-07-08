@@ -66,9 +66,18 @@ const ShoppingCarts = () => {
             <p className="text-gray-700 text-sm">
               Taxes and shipping calculated at checkout.
             </p>
-            <Link to="/checkout" className="haven-btn w-full mt-1 text-center ">
-              Checkout Process
-            </Link>
+            {cartsData.length > 0 ? (
+              <Link
+                to="/checkout"
+                className="haven-btn w-full mt-1 text-center "
+              >
+                Checkout Process
+              </Link>
+            ) : (
+              <span className="haven-btn w-full mt-1 text-center ">
+                Checkout Process
+              </span>
+            )}
           </div>
         </div>
       </div>

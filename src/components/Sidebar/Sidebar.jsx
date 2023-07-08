@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";

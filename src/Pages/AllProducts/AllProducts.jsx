@@ -6,6 +6,7 @@ import addCart from "../../utils/addCart";
 import useCarts from "../../hooks/useCarts";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AllProducts = () => {
   const { user } = useAuth();
@@ -32,6 +33,7 @@ const AllProducts = () => {
       if (data?.insertedId) {
         refetch();
         setAddingLoading(false);
+        toast.success("Items added");
       } else {
         setAddingLoading(false);
       }
