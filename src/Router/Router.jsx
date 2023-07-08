@@ -13,6 +13,7 @@ import Summary from "../Pages/Dashboard/AdminDasboard/Summary";
 import ManageCustomer from "../Pages/Dashboard/AdminDasboard/ManageCustomer";
 import ManageProducts from "../Pages/Dashboard/AdminDasboard/ManageProducts";
 import AddProducts from "../Pages/Dashboard/AdminDasboard/AddProducts";
+import PrivateAdmin from "./PrivateAdmin";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/order-summary",
@@ -59,19 +64,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/summary",
-        element: <Summary />,
+        element: (
+          <PrivateAdmin>
+            <Summary />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/manage-customer",
-        element: <ManageCustomer />,
+        element: (
+          <PrivateAdmin>
+            <ManageCustomer />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/manage-products",
-        element: <ManageProducts />,
+        element: (
+          <PrivateAdmin>
+            <ManageProducts />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/add-products",
-        element: <AddProducts />,
+        element: (
+          <PrivateAdmin>
+            <AddProducts />
+          </PrivateAdmin>
+        ),
       },
     ],
   },
