@@ -5,11 +5,7 @@ const ShoppingCart = ({ cart, handleRemove }) => {
       <img src={cart?.image} width={50} height={50} alt="" />
       <p>{cart?.name}</p>
       <p>{cart?.price}</p>
-      <div className="flex gap-1">
-        <span>-</span>
-        <input type="number" className="w-10 text-center" defaultValue={1} />
-        <span>+</span>
-      </div>
+      <p className="text-sm text-gray-500">1/1</p>
       <span
         onClick={() => handleRemove(cart?._id)}
         className="cursor-pointer text-red-500"

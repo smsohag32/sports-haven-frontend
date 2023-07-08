@@ -57,7 +57,7 @@ const ShoppingCarts = () => {
             <h1 className="font-semibold text-xl md:text-2xl">Order Summary</h1>
             <p className="primary-text font-bold text-lg">Subtotal: 300</p>
             <p className="text-gray-700 text-sm">
-              Taxes and shipping calculated at checkout
+              Taxes and shipping calculated at checkout.
             </p>
             <Link to="/checkout" className="haven-btn w-full mt-1 text-center ">
               Checkout Process

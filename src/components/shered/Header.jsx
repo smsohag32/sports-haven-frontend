@@ -5,8 +5,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import useCarts from "../../hooks/useCarts";
+import useAdmin from "../../hooks/useAdmin";
 
 const Header = () => {
+  const { isAdmin } = useAdmin();
   const { cartsData } = useCarts();
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
@@ -70,8 +72,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <Link className="flex gap-1 items-center" to="/dashboard">
-              <MdOutlineDashboardCustomize color="FF6633" className="text-xl" />{" "}
+            <Link
+              className="flex gap-1 items-center"
+              to={`${
+                isAdmin ? "/dashboard/summary" : "/dashboard/order-summary"
+              }`}
+            >
+              <MdOutlineDashboardCustomize color="FF6633" className="text-xl" />
               Dashboard
             </Link>
           </li>
