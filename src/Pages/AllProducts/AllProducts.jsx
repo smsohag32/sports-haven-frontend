@@ -4,8 +4,12 @@ import Spinner from "../../components/Spinner/Spinner";
 import useProducts from "../../hooks/useProducts";
 import addCart from "../../utils/addCart";
 import useCarts from "../../hooks/useCarts";
+import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const AllProducts = () => {
+  const { user } = useAuth();
+  const [addingLoading, setAddingLoading] = useState(false);
   // all products load in custom hook
   const { products, pLoading } = useProducts();
   const { refetch } = useCarts();
@@ -18,9 +22,18 @@ const AllProducts = () => {
 
   //   handle add to cart items
   const addToCart = (product) => {
-    addCart(product).then((data) => {
+    setAddingLoading(true);
+    const cartsInfo = {
+      ...product,
+      customer_name: user?.displayName,
+      email: user?.email,
+    };
+    addCart(cartsInfo).then((data) => {
       if (data?.insertedId) {
         refetch();
+        setAddingLoading(false);
+      } else {
+        setAddingLoading(false);
       }
     });
   };
@@ -49,6 +62,7 @@ const AllProducts = () => {
                 product={product}
                 handleDetail={handleDetail}
                 addToCart={addToCart}
+                addingLoading={addingLoading}
               />
             ))}
         </div>

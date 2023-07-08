@@ -1,14 +1,17 @@
 import axios from "axios"
 
-const addCart = async(product)=>{
+const addCart = async(productInfo)=>{
 
-   const productInfo = {
-    name: product.name,
-    image: product.image,
-    price: product.price,
-    rating: product.rating
+    // new carts product information store 
+   const newCartProduct = {
+    customer_name: productInfo?.customer_name,
+    email: productInfo?.email,
+    name: productInfo?.name,
+    image: productInfo?.image,
+    price: productInfo?.price,
+    rating: productInfo?.rating
    }
-    const res = await axios.post(`http://localhost:5000/carts`, productInfo);
+    const res = await axios.post(`http://localhost:5000/carts`, newCartProduct);
     const data = res.data;
     return data;
 }

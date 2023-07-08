@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-const ProductCard = ({ product, handleDetail, addToCart }) => {
+const ProductCard = ({ product, handleDetail, addToCart, addingLoading }) => {
   return (
     <div className="p-2 border-stone-300 border text-center">
       <div className="flex flex-col text-sm flex-wrap gap-1">
@@ -19,6 +17,7 @@ const ProductCard = ({ product, handleDetail, addToCart }) => {
           <p className="font-medium primary-text">${product?.price}</p>
         </div>
         <button
+          disabled={addingLoading}
           onClick={() => addToCart(product)}
           className="uppercase cart-btn block text-center mt-auto"
         >

@@ -4,7 +4,7 @@ import useSecureAuth from "./useSecureAuth";
 
 const useCarts = () => {
   const { secureAuth } = useSecureAuth();
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
 
   const {
     data: cartsData = [],
@@ -14,7 +14,7 @@ const useCarts = () => {
     queryKey: ["carts"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await secureAuth.get("/carts");
+      const res = await secureAuth.get(`/carts/${user?.email}`);
       return res.data;
     },
   });
