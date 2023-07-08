@@ -4,8 +4,10 @@ import Hamburger from "hamburger-react";
 import { useAuth } from "../../hooks/useAuth";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import useCarts from "../../hooks/useCarts";
 
 const Header = () => {
+  const { cartsData } = useCarts();
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation() || "/";
@@ -78,12 +80,14 @@ const Header = () => {
             <span>
               <Link
                 to="/carts"
-                className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg  focus:ring-4 focus:outline-none"
+                className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg"
               >
                 <AiOutlineShoppingCart size={30} color="#FF6633" />
 
                 <div className="absolute inline-flex items-center justify-center w-6 h-6 bg-[#ff6633c7] text-white text-xs font-bold marker:bg-red-500 border-2 border-white rounded-full -top-1 -right-1 ">
-                  <span className="p-1">0</span>
+                  <span className="p-1">
+                    {cartsData ? cartsData.length : 0}
+                  </span>
                 </div>
               </Link>
             </span>

@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AllProducts from "../Pages/AllProducts/AllProducts";
+import ShoppingCarts from "../Pages/ShoppingCarts/ShoppingCarts";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "allproducts",
         element: <AllProducts />,
+      },
+      {
+        path: "carts",
+        element: <ShoppingCarts />,
       },
     ],
   },

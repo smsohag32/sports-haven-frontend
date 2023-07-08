@@ -35,6 +35,11 @@ body {
 .primary-link:hover{
   @apply text-[#FF6633] transition-all duration-200
 }
+
 .active-link{
   @apply text-[#FF6633]
+}
+
+.cart-btn{
+  @apply uppercase block text-center py-1.5 px-2.5 bg-[#FF6633] text-white  rounded hover:bg-[#FF803F] transition-colors duration-300 text-xs font-medium
 }

@@ -17,7 +17,6 @@ const useProducts = () => {
       return res.data;
     },
   });
-
   return { products, pLoading, refetch };
 };
 

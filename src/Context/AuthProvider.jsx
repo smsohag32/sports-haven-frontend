@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app);
 
@@ -58,7 +59,25 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+
+      // jwt set in localStorage
+      if (currentUser?.email) {
+        axios
+          .post("http://localhost:5000/jwt", {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
+          })
+          .catch((err) => {
+            setLoading(false);
+          });
+      } else {
+        // remove to when user not found
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => unsub();
   }, []);
