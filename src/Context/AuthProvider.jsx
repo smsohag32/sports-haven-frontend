@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
       // jwt set in localStorage
       if (currentUser?.email) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://sports-haven-backend.vercel.app/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

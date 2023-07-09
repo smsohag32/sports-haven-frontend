@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCarts from "../../hooks/useCarts";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
@@ -46,6 +46,7 @@ const Checkout = () => {
       email,
       date: formattedDate,
     };
+    // post orders to database
     secureAuth.post(`/orders/${user?.email}`, newOrder).then((data) => {
       if (data.data.insertedId) {
         Swal.fire({
@@ -66,27 +67,35 @@ const Checkout = () => {
   }
   return (
     <div>
-      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[250px] border-b-[#FF6633]">
+      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[200px] border-b">
         <h1 className="font-semibold mb-4 text-2xl md:text-3xl">Checkout /</h1>
       </div>
       <div className="haven-container my-9 grid grid-cols-1 md:grid-cols-2">
         <div className="w-full flex flex-col flex-wrap py-10 px-5 gap-2 max-w-sm">
-          <p>Customer name: {user?.displayName}</p>
-          <p className="mb-4">Customer email: {user?.email}</p>
-          <label htmlFor="address">Your Address</label>
-          <input
-            onChange={(e) => setAddress(e.target.value)}
-            type="text"
-            id="address"
-            name="address"
-            placeholder="enter your address"
-            className="px-2 outline-none text-gray-600 focus:border-red-300 py-1 border border-[#FF6633]"
-            minLength={3}
-            required
-          />
-          {addressErr && (
-            <span className="text-xs text-red-500">{addressErr}</span>
-          )}
+          <p className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+            Your name: {user?.displayName}
+          </p>
+          <p className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+            Your email: {user?.email}
+          </p>
+          <div className="px-5 py-3 border-b  border-gray-200 bg-white text-sm">
+            <label htmlFor="address">Your Address</label>
+            <input
+              onChange={(e) => setAddress(e.target.value)}
+              type="text"
+              id="address"
+              name="address"
+              placeholder="enter your address"
+              className="px-2 mt-2 block outline-none text-gray-600 focus:border-red-300 py-2 border border-[#FF6633]"
+              minLength={3}
+              required
+            />
+            {addressErr && (
+              <span className="text-xs block mt-1 text-red-500">
+                {addressErr}
+              </span>
+            )}
+          </div>
         </div>
         <div>
           <div className="w-full h-full flex flex-col gap-1 p-10 md:col-span-1 border-2">

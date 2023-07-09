@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./useAuth";
 import useSecureAuth from "./useSecureAuth";
 
+// protected jwt
+// all backend data summary information load to use this hook
 const useSummary = () => {
   const { loading } = useAuth();
   const { secureAuth } = useSecureAuth();

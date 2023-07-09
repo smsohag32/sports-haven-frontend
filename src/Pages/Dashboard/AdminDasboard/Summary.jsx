@@ -7,6 +7,7 @@ const Summary = () => {
   const { summaryData, sLoading } = useSummary();
   const { totalProducts, totalOrders, totalCustomer, totalCarts } = summaryData;
 
+  // create a array of object . and use to pieChart
   const chartData = [
     {
       name: "Total Products",
@@ -28,6 +29,7 @@ const Summary = () => {
   if (sLoading) {
     return <Spinner />;
   }
+
   return (
     <>
       <SectionHeading heading="Summary Overview"></SectionHeading>

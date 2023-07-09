@@ -1,4 +1,6 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
+
+// shopping carts product single products card
 const ShoppingCart = ({ cart, handleRemove }) => {
   return (
     <div className="flex max-w-md justify-between border items-center py-2 px-3">

@@ -3,6 +3,7 @@ import useCarts from "../../hooks/useCarts";
 import ShoppingCart from "../../components/Cards/ShoppingCart";
 import Spinner from "../../components/Spinner/Spinner";
 import useSecureAuth from "../../hooks/useSecureAuth";
+import EmptyMessage from "../../components/shered/EmptyMessage";
 
 const ShoppingCarts = () => {
   const { cartsData, cLoading, refetch } = useCarts();
@@ -12,7 +13,7 @@ const ShoppingCarts = () => {
   const total = cartsData.reduce((sum, item) => sum + item.price, 0);
   const subTotal = parseFloat(total.toFixed(2));
 
-  // ShoppingCart items remove handle
+  // handle ShoppingCart items remove
   const handleRemove = (id) => {
     secureAuth.delete(`/carts/${id}`).then((data) => {
       if (data?.data?.deletedCount > 0) {
@@ -25,7 +26,7 @@ const ShoppingCarts = () => {
   }
   return (
     <div>
-      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[250px] border-b-[#FF6633]">
+      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[200px] border-b">
         <h1 className="font-semibold mb-4 text-2xl md:text-3xl">
           Shopping Cart
         </h1>
@@ -50,12 +51,11 @@ const ShoppingCarts = () => {
                 ))}
               </div>
             ) : (
-              <span className="text-xl font-bold flex flex-wrap gap-2">
-                Currently Shopping Cart is Empty
-                <Link className="cart-btn text-xs uppercase" to="/allproducts">
-                  Continue Shopping
-                </Link>
-              </span>
+              <EmptyMessage
+                message="Shopping cart is empty"
+                address="/allproducts"
+                label={"Continue Shopping"}
+              ></EmptyMessage>
             )}
           </div>
           <div className="w-full h-full flex flex-col gap-1 p-6 md:col-span-1 border-2">

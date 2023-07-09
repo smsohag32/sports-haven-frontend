@@ -46,7 +46,7 @@ const AllProducts = () => {
   }
   return (
     <div className="">
-      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[250px] border-b-[#FF6633]">
+      <div className="flex items-center haven-container flex-col border text-center justify-center min-h-[150px] shadow-[#FF6633]">
         <h1 className="font-semibold mb-4 text-2xl md:text-3xl">
           All Products
         </h1>

@@ -7,13 +7,18 @@ import { useState } from "react";
 import addCart from "../../utils/addCart";
 import { toast } from "react-toastify";
 import useCarts from "../../hooks/useCarts";
+import { Rating } from "@smastrom/react-rating";
+import useAdmin from "../../hooks/useAdmin";
 
 const ProductDetails = () => {
+  const { isAdmin } = useAdmin();
   const { id } = useParams();
   const { refetch } = useCarts();
   const { loading, user } = useAuth();
   const { secureAuth } = useSecureAuth();
   const [addingLoading, setAddingLoading] = useState(false);
+
+  // single product load in using query to id
   const { data: product = [], isLoading } = useQuery({
     queryKey: ["product"],
     enabled: !loading,
@@ -67,14 +72,28 @@ const ProductDetails = () => {
             {product?.description}
           </p>
           <div className="px-5 py-5 border-b border-gray-200 text-sm">
-            <span>{product?.rating}</span>
+            <div className="flex items-center gap-2">
+              <Rating
+                style={{ maxWidth: 100 }}
+                value={product?.rating}
+                readOnly
+              />
+              <span className="text-xs text-gray-600 mt-1">
+                {product?.rating}/5
+              </span>
+            </div>
           </div>
           <p className="px-5 py-5 border-b border-gray-200  text-sm primary-text">
             ${product?.price}
           </p>
+          {/* conditional rendering admin do not add to cart. only customer can add  */}
           <button
             disabled={addingLoading}
-            onClick={addToCart}
+            onClick={
+              isAdmin
+                ? () => toast.error("You are Admin. Only Customer Buy Products")
+                : addToCart
+            }
             className="haven-btn uppercase mt-auto"
           >
             Add to Cart

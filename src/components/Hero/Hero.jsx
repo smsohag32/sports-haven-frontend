@@ -10,6 +10,8 @@ import { useRef } from "react";
 import "./hero.css";
 import heroContent from "./heroContent";
 import { Link } from "react-router-dom";
+
+// header banner hero section using to swiper js swiper
 const Hero = () => {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);

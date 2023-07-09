@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import { AiOutlineBars } from "react-icons/ai";
+import { AiOutlineMenuFold } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import { FaHome } from "react-icons/fa";
@@ -39,7 +39,7 @@ const Sidebar = () => {
           onClick={handleToggle}
           className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
         >
-          <AiOutlineBars className="h-5 w-5" />
+          <AiOutlineMenuFold className="h-5 w-5" />
         </button>
       </div>
 
@@ -52,9 +52,12 @@ const Sidebar = () => {
         <div>
           {/* profile information */}
           <div>
-            <div className="w-full hidden md:flex py-2 justify-center items-center mx-auto">
+            <div className="w-full hidden md:flex py-2 justify-center items-center flex-col mx-auto">
               <span className="font-bold text-xl">
                 Sports<span className="primary-text">Haven</span>
+              </span>
+              <span className="inline-block text-gray-400 text-xs mt-1">
+                {isAdmin ? "Admin" : "New Customer"}
               </span>
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">

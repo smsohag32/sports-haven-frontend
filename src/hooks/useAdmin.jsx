@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./useAuth";
 import useSecureAuth from "./useSecureAuth";
 
+// this hook use to admin role check . return to true or false
 const useAdmin = () => {
   const { user, loading } = useAuth();
   const { secureAuth } = useSecureAuth();

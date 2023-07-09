@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./useAuth";
 import useSecureAuth from "./useSecureAuth";
 
+// all products load use to this hook
 const useProducts = () => {
   const { loading } = useAuth();
   const { secureAuth } = useSecureAuth();

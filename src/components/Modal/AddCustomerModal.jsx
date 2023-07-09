@@ -1,11 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../hooks/useAuth";
 import { imageUpload } from "../../utils/imageUpload";
 import saveUser from "../../utils/saveuser";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner/Spinner";
+
+// new customer added modal
 
 const AddCustomerModal = ({ closeModal, isOpen, refetch, users, uLoading }) => {
   const [createErr, setCreateErr] = useState("");

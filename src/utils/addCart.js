@@ -1,5 +1,6 @@
 import axios from "axios"
 
+// use to save carts data in database
 const addCart = async(productInfo)=>{
 
     // new carts product information store 
@@ -11,7 +12,7 @@ const addCart = async(productInfo)=>{
     price: productInfo?.price,
     rating: productInfo?.rating
    }
-    const res = await axios.post(`http://localhost:5000/carts`, newCartProduct);
+    const res = await axios.post(`https://sports-haven-backend.vercel.app/carts`, newCartProduct);
     const data = res.data;
     return data;
 }

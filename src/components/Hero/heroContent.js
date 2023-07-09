@@ -1,4 +1,6 @@
 
+
+// header banner image store in a object
 const heroContent = [
   {
     id: 1,

@@ -1,3 +1,4 @@
+// admin order summary single order row
 const OrderCard = ({ product, index }) => {
   return (
     <tr>

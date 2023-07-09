@@ -1,3 +1,4 @@
+// section heading shared component
 const SectionHeading = ({ heading, subHeading }) => {
   return (
     <div className="flex py-5 items-center flex-col text-left">

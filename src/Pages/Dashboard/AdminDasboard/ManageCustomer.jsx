@@ -83,6 +83,7 @@ const ManageCustomer = () => {
           </div>
         </div>
       </div>
+      {/* add  customer */}
       <AddCustomerModal
         isOpen={isOpen}
         closeModal={closeModal}

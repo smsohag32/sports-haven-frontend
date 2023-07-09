@@ -1,9 +1,14 @@
 import { useForm } from "react-hook-form";
 import SectionHeading from "../../../components/shered/SectionHeading";
 import { useState } from "react";
+import { imageUpload } from "../../../utils/imageUpload";
+import useSecureAuth from "../../../hooks/useSecureAuth";
+import { toast } from "react-toastify";
+import IconSpin from "../../../components/Spinner/IconSpin";
 
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
+  const { secureAuth } = useSecureAuth();
   // react hook form
   const {
     register,
@@ -14,7 +19,30 @@ const AddProducts = () => {
 
   // add product
   const handleAddProduct = (productInfo) => {
-    console.log(productInfo);
+    setLoading(true);
+    const imageFile = productInfo.image[0];
+    imageUpload(imageFile).then((imageData) => {
+      const image_url = imageData.data.display_url;
+      const newProduct = {
+        name: productInfo?.name,
+        description: productInfo?.description,
+        image: image_url,
+        price: productInfo?.price,
+        rating: productInfo?.rating,
+      };
+      secureAuth
+        .post("/products", newProduct)
+        .then((data) => {
+          if (data.data.insertedId) {
+            toast.success("New product created");
+            reset();
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
+    });
   };
 
   return (
@@ -26,25 +54,6 @@ const AddProducts = () => {
           className="max-w-xl mx-auto p-4"
           onSubmit={handleSubmit(handleAddProduct)}
         >
-          <div className="mb-2 w-full">
-            <label className="block text-gray-700 font-semibold mb-2">
-              Product Name
-            </label>
-            <input
-              {...register("name", {
-                required: "This Field is required *",
-              })}
-              type="text"
-              name="name"
-              placeholder="Enter customer name"
-              className="w-full border border-gray-300 focus:outline-none focus:border-[#FF6633] px-4 py-2 "
-            />
-            {errors?.name && (
-              <span className="text-red-600 block text-sm">
-                <small>{errors.name?.message}</small>
-              </span>
-            )}
-          </div>
           <div className="flex gap-6 md:flex-row flex-col">
             <div className="mb-2 w-full">
               <label className="block text-gray-700 font-semibold mb-2">
@@ -134,6 +143,27 @@ const AddProducts = () => {
               )}
             </div>
           </div>
+          <div className="mb-2 w-full">
+            <label className="block text-gray-700 font-semibold mb-2">
+              Product Description
+            </label>
+            <textarea
+              {...register("description", {
+                required: "This field is required *",
+              })}
+              type="text"
+              cols={4}
+              rows={2}
+              name="description"
+              placeholder="Enter product description"
+              className="w-full border border-gray-300 focus:outline-none focus:border-[#FF6633] px-4 py-2 "
+            ></textarea>
+            {errors?.description && (
+              <span className="text-red-600 block text-sm">
+                <small>{errors.description?.message}</small>
+              </span>
+            )}
+          </div>
           <div className="">
             <hr className="mt-8 " />
             <button
@@ -141,7 +171,7 @@ const AddProducts = () => {
               disabled={loading}
               className="inline-flex haven-btn"
             >
-              {loading ? "Loading" : "Create Product"}
+              {loading ? <IconSpin /> : "Create Product"}
             </button>
           </div>
         </form>

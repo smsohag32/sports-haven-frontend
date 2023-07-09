@@ -18,7 +18,7 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  //   handle user login
+  //   handle user logout
   const handleLogout = () => {
     logOut();
     navigate("/login");
@@ -36,8 +36,10 @@ const Header = () => {
       <nav className="flex haven-container justify-between">
         <div className="flex justify-between items-center w-full md:w-auto gap-10">
           <div className="w-full">
-            <Link to="/" className="text-xl md:text-2xl">
-              SportsHaven
+            <Link to="/">
+              <span className="font-bold italic text-xl md:text-2xl">
+                <span className="primary-text">Sports</span>Haven
+              </span>
             </Link>
           </div>
           <span className="md:hidden">
@@ -101,7 +103,7 @@ const Header = () => {
             {user && (
               <div className="">
                 <img
-                  className="rounded-full object-cover"
+                  className="w-10 h-10 p-1 rounded-full ring-2 ring-[#FF6633]"
                   src={user?.photoURL}
                   alt="user"
                   width={45}
@@ -109,7 +111,6 @@ const Header = () => {
                 />
               </div>
             )}
-
             <button
               className="px-3 py-1 bg-[#FF6633] text-white font-semibold rounded-3xl hover:bg-[#FF803F] transition-colors duration-300"
               onClick={handleLogout}

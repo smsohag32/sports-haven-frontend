@@ -2,13 +2,17 @@ import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import saveUser from "../../utils/saveuser";
+
+// social login component
 const SocialLogin = () => {
   const { loading, setLoading, googleLogin } = useAuth();
 
   const location = useLocation();
+  // redirect location pathname get. setting up to private route
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
 
+  // handle to google login
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {

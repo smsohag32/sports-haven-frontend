@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { VscGraph } from "react-icons/vsc";
 import { FaShopify, FaUsersCog } from "react-icons/fa";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
+import {
+  MdOutlineAddShoppingCart,
+  MdOutlineShoppingCartCheckout,
+} from "react-icons/md";
 const AdminLink = () => {
   return (
     <>
@@ -57,7 +60,7 @@ const AdminLink = () => {
           }`
         }
       >
-        <FaShopify className="w-5 h-5" />
+        <MdOutlineShoppingCartCheckout className="w-5 h-5" />
         <span className="mx-4 font-medium">Orders</span>
       </NavLink>
     </>

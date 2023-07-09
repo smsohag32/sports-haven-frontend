@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 // base url
 const secureAuth = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://sports-haven-backend.vercel.app/",
 });
 
 // access token send to server and secure to apis

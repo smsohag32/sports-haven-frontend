@@ -1,3 +1,6 @@
+
+
+// use to upload image in hosting website
 export const imageUpload = async image => {
   const formData = new FormData()
   formData.append('image', image)

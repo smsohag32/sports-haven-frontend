@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 html{
@@ -11,12 +12,13 @@ html{
 body {
   @apply bg-[#F7F9FA] text-[#222222]
 }
-/* react toast custom color */
 
+/* react toast custom color */
 .custom-toast-container {
   border: 2px solid #FF6633;
 }
 
+/* custom class */
 .haven-container{
   @apply max-w-[2520px] w-full mx-auto xl:px-20 md:px-10 sm:px-2 px-4
 }
