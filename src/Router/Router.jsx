@@ -14,6 +14,9 @@ import ManageCustomer from "../Pages/Dashboard/AdminDasboard/ManageCustomer";
 import ManageProducts from "../Pages/Dashboard/AdminDasboard/ManageProducts";
 import AddProducts from "../Pages/Dashboard/AdminDasboard/AddProducts";
 import PrivateAdmin from "./PrivateAdmin";
+import Orders from "../Pages/Dashboard/AdminDasboard/Orders";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import Customer from "../Pages/Dashboard/AdminDasboard/Customer";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,11 @@ const router = createBrowserRouter([
         path: "allproducts",
         element: <AllProducts />,
       },
+      {
+        path: "products/:id",
+        element: <ProductDetails />,
+      },
+
       {
         path: "carts",
         element: <ShoppingCarts />,
@@ -79,6 +87,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/customer/:id",
+        element: (
+          <PrivateAdmin>
+            <Customer />
+          </PrivateAdmin>
+        ),
+      },
+      {
         path: "/dashboard/manage-products",
         element: (
           <PrivateAdmin>
@@ -91,6 +107,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateAdmin>
             <AddProducts />
+          </PrivateAdmin>
+        ),
+      },
+      {
+        path: "/dashboard/orders",
+        element: (
+          <PrivateAdmin>
+            <Orders />
           </PrivateAdmin>
         ),
       },

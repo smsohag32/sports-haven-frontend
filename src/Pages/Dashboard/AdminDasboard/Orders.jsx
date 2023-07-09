@@ -2,10 +2,11 @@ import OrderRow from "../../../components/Order/OrderRow";
 import Spinner from "../../../components/Spinner/Spinner";
 import EmptyMessage from "../../../components/shered/EmptyMessage";
 import SectionHeading from "../../../components/shered/SectionHeading";
-import useOrders from "../../../hooks/useOrders";
+import useAllOrders from "../../../hooks/useAllOrders";
 
-const OrderSummary = () => {
-  const { orders, oLoading } = useOrders();
+const Orders = () => {
+  // load all order data
+  const { allOrders, oLoading } = useAllOrders();
 
   if (oLoading) {
     return <Spinner />;
@@ -14,7 +15,7 @@ const OrderSummary = () => {
     <div>
       <SectionHeading heading="Order Summary" />
       <div>
-        {orders.length > 0 ? (
+        {allOrders.length > 0 ? (
           <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -44,6 +45,12 @@ const OrderSummary = () => {
                           scope="col"
                           className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                         >
+                          Customer
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                        >
                           Status
                         </th>
                         <th
@@ -53,8 +60,12 @@ const OrderSummary = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {orders.map((order) => (
-                        <OrderRow key={order?._id} order={order}></OrderRow>
+                      {allOrders.map((order) => (
+                        <OrderRow
+                          key={order?._id}
+                          isAdmin={true}
+                          order={order}
+                        ></OrderRow>
                       ))}
                     </tbody>
                   </table>
@@ -74,4 +85,4 @@ const OrderSummary = () => {
   );
 };
 
-export default OrderSummary;
+export default Orders;

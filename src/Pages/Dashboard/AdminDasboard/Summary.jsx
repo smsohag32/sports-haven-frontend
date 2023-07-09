@@ -45,7 +45,6 @@ const Summary = () => {
               fill="#FF803F"
               label
             />
-
             <Tooltip />
           </PieChart>
         </div>
