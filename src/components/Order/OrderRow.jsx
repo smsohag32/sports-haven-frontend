@@ -28,10 +28,7 @@ const OrderRow = ({ order, isAdmin }) => {
       </td>
       <td className="px-5 font-semibold py-5 border-b border-gray-200 bg-white text-xs">
         <p className="text-gray-900 whitespace-no-wrap">
-          <Link
-            to={`/dashboard/order-details${order._id}`}
-            className="cart-btn"
-          >
+          <Link to={`/dashboard/orders/${order._id}`} className="cart-btn">
             Details
           </Link>
         </p>

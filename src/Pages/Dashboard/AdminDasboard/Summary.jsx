@@ -1,7 +1,7 @@
 import Spinner from "../../../components/Spinner/Spinner";
 import SectionHeading from "../../../components/shered/SectionHeading";
 import useSummary from "../../../hooks/useSummary";
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Tooltip } from "recharts";
 const Summary = () => {
   // load all summary
   const { summaryData, sLoading } = useSummary();
@@ -29,7 +29,7 @@ const Summary = () => {
     return <Spinner />;
   }
   return (
-    <div>
+    <>
       <SectionHeading heading="Summary Overview"></SectionHeading>
       <div className="grid grid-cols-1 items-center md:grid-cols-2 min-h-[60vh]">
         <div className="w-full">
@@ -63,7 +63,7 @@ const Summary = () => {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

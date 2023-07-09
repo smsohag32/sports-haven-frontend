@@ -1,7 +1,4 @@
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
-
-const ProductRow = ({ product, index, deleteProduct }) => {
+const OrderCard = ({ product, index }) => {
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -19,20 +16,10 @@ const ProductRow = ({ product, index, deleteProduct }) => {
         <p className="text-gray-900 whitespace-no-wrap">{product?.price}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <Link to={`/dashboard/products/${product?._id}`} className="cart-btn">
-          Details
-        </Link>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span
-          onClick={() => deleteProduct(product?._id)}
-          className="cursor-pointer text-red-500"
-        >
-          <RiDeleteBin6Line />
-        </span>
+        <p className="text-gray-900 whitespace-no-wrap">1/1</p>
       </td>
     </tr>
   );
 };
 
-export default ProductRow;
+export default OrderCard;

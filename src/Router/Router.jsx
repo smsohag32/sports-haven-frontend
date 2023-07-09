@@ -17,6 +17,8 @@ import PrivateAdmin from "./PrivateAdmin";
 import Orders from "../Pages/Dashboard/AdminDasboard/Orders";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Customer from "../Pages/Dashboard/AdminDasboard/Customer";
+import AdminProductDetails from "../Pages/Dashboard/AdminDasboard/AdminProductDetails";
+import OrderDetails from "../Pages/Dashboard/AdminDasboard/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +105,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/products/:id",
+        element: (
+          <PrivateAdmin>
+            <AdminProductDetails />
+          </PrivateAdmin>
+        ),
+      },
+      {
         path: "/dashboard/add-products",
         element: (
           <PrivateAdmin>
@@ -115,6 +125,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateAdmin>
             <Orders />
+          </PrivateAdmin>
+        ),
+      },
+      {
+        path: "/dashboard/orders/:id",
+        element: (
+          <PrivateAdmin>
+            <OrderDetails />
           </PrivateAdmin>
         ),
       },
