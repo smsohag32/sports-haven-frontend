@@ -123,6 +123,14 @@ const Login = () => {
             </Link>
           </p>
           <SocialLogin />
+          <div className="flex mt-3 text-xs flex-col items-center justify-center">
+            <p className="p-1 border-b border-gray-200 bg-white">
+              Admin-email: sohag11@gmail.com{" "}
+            </p>
+            <p className="p-1 border-b border-gray-200 bg-white">
+              Password: sohag1234{" "}
+            </p>
+          </div>
         </div>
         <div className="w-full">
           <div>
