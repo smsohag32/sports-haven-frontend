@@ -77,7 +77,7 @@ const Register = () => {
             shopping experience.
           </p>
           <form onSubmit={handleSubmit(handleRegister)}>
-            <div className="flex gap-11">
+            <div className="flex gap-6 flex-col md:flex-row">
               <div className="mb-2 w-full">
                 <label className="block text-gray-700 font-semibold mb-2">
                   Name
@@ -121,7 +121,7 @@ const Register = () => {
                 )}
               </div>
             </div>
-            <div className="flex gap-8">
+            <div className="flex gap-6 flex-col md:flex-row">
               <div className="mb-2 w-full">
                 <label className="block text-gray-700 font-semibold mb-2">
                   Email
