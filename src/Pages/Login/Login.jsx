@@ -125,7 +125,7 @@ const Login = () => {
           <SocialLogin />
           <div className="flex mt-3 text-xs flex-col items-center justify-center">
             <p className="p-1 border-b border-gray-200 bg-white">
-              Admin-email: sohag11@gmail.com{" "}
+              Admin-email: sohagsheik32@gmail.com{" "}
             </p>
             <p className="p-1 border-b border-gray-200 bg-white">
               Password: sohag1234{" "}
