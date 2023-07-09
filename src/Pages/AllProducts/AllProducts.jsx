@@ -7,8 +7,10 @@ import useCarts from "../../hooks/useCarts";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useAdmin from "../../hooks/useAdmin";
 
 const AllProducts = () => {
+  const { isAdmin } = useAdmin();
   const { user } = useAuth();
   const [addingLoading, setAddingLoading] = useState(false);
   // all products load in custom hook
@@ -60,6 +62,7 @@ const AllProducts = () => {
           {products?.length > 0 &&
             products.map((product) => (
               <ProductCard
+                isAdmin={isAdmin}
                 key={product?._id}
                 product={product}
                 handleDetail={handleDetail}

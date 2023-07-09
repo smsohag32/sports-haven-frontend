@@ -1,4 +1,12 @@
-const ProductCard = ({ product, handleDetail, addToCart, addingLoading }) => {
+import { toast } from "react-toastify";
+
+const ProductCard = ({
+  product,
+  handleDetail,
+  addToCart,
+  addingLoading,
+  isAdmin,
+}) => {
   return (
     <div className="p-2 border-stone-300 border text-center">
       <div className="flex flex-col text-sm flex-wrap gap-1">
@@ -18,7 +26,11 @@ const ProductCard = ({ product, handleDetail, addToCart, addingLoading }) => {
         </div>
         <button
           disabled={addingLoading}
-          onClick={() => addToCart(product)}
+          onClick={
+            isAdmin
+              ? () => toast.error("You Are admin. Only customer buy products")
+              : () => addToCart(product)
+          }
           className="uppercase cart-btn block text-center mt-auto"
         >
           Add to Cart
