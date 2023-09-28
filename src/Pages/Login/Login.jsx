@@ -8,6 +8,7 @@ import { styled } from "styled-components";
 import SocialLogin from "../../components/shered/SocialLogin";
 import { useAuth } from "../../hooks/useAuth";
 import IconSpin from "../../components/Spinner/IconSpin";
+import saveUser from "../../utils/saveuser";
 
 // login container
 const LoginContainer = styled.div`
@@ -33,13 +34,14 @@ const Login = () => {
 
   // handle to login user
   const handleLogin = (userInfo) => {
-    console.log(userInfo);
     const email = userInfo.email;
     const password = userInfo.password;
     userLogin(email, password)
       .then((result) => {
-        navigate(from, { replace: true });
-        reset();
+        saveUser(result?.user).then((data) => {
+          navigate(from, { replace: true });
+          reset();
+        });
       })
       .catch((err) => {
         setLoading(false);
@@ -117,7 +119,7 @@ const Login = () => {
             </div>
           )}
           <p className="mt-8 text-sm text-black w-full text-center">
-            Don't have an account? Please
+            Don`t have an account? Please
             <Link to="/register" className="ms-2 primary-text font-semibold">
               Register Now
             </Link>
@@ -125,10 +127,10 @@ const Login = () => {
           <SocialLogin />
           <div className="flex mt-3 text-xs flex-col items-center justify-center">
             <p className="p-1 border-b border-gray-200 bg-white">
-              Admin-email: sohagsheik32@gmail.com{" "}
+              Admin-email: sports@gmail.com
             </p>
             <p className="p-1 border-b border-gray-200 bg-white">
-              Password: sohag1234{" "}
+              Password: 1234sport#S
             </p>
           </div>
         </div>
